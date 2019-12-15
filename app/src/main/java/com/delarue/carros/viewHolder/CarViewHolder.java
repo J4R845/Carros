@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delarue.carros.R;
 import com.delarue.carros.entities.Car;
+import com.delarue.carros.listener.OnListClickInteractionListener;
 
 public class CarViewHolder extends RecyclerView.ViewHolder {
 
@@ -20,8 +21,14 @@ public class CarViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bindData(Car car){
+    public void bindData(final Car car, final OnListClickInteractionListener listener){
         this.mTextModel.setText(car.model);
+        this.mTextModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClic(car.id);
+            }
+        });
     }
 
 }
